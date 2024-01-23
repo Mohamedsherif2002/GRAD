@@ -146,6 +146,7 @@ def _load_gqa_dataset(dataroot, args, name, img_id2val):
     return entries
 
 class GQAFeatureDataset(Dataset):
+    print("1")
     def __init__(self, args, name, dictionary, dataroot='/kaggle/input/lxmert-gqa/gqa', adaptive=False):
         super(GQAFeatureDataset, self).__init__()
         assert name in ['train', 'val', 'test-dev2015', 'test2015', 'test']
@@ -196,7 +197,7 @@ class GQAFeatureDataset(Dataset):
         self.tensorize()
         self.v_dim = self.features.size(1)
         self.s_dim = self.spatials.size(1)
-
+    print("2")
     def tokenize(self, max_length=14):
         """Tokenizes the questions.
 
@@ -212,7 +213,7 @@ class GQAFeatureDataset(Dataset):
                 tokens = tokens + padding
             utils.assert_eq(len(tokens), max_length)
             entry['q_token'] = tokens
-
+    print("3")
     def entity_tokenize(self, max_length=7):
         """Tokenizes the instruction word.
 
@@ -230,7 +231,7 @@ class GQAFeatureDataset(Dataset):
                 tokens = tokens + padding
 
             entry['entity_token'] = tokens
-
+    print("4")
     def ans_tokenize(self, max_length=2):
         """Tokenizes the questions.
 
@@ -251,7 +252,7 @@ class GQAFeatureDataset(Dataset):
                 tokens = tokens + padding
             utils.assert_eq(len(tokens), max_length)
             entry['ans_token'] = tokens
-
+    print("5")
     # Tokenize statistical words 2-gram
     def stat_word_tokenize(self, max_length=40):
         for img_id in self.stat_words:
@@ -271,7 +272,7 @@ class GQAFeatureDataset(Dataset):
                 tmp_token_words = [tmp for _ in range(max_length - len(words))]
                 token_words += tmp_token_words
             self.stat_features[img_id] = token_words
-
+    print("6")
     # Tokenize attribute words
     def attr_word_tokenize(self, max_length=15):
         for img_id in self.attr_words:
@@ -290,7 +291,7 @@ class GQAFeatureDataset(Dataset):
                 tmp_token_words = [tmp for _ in range(max_length - len(words))]
                 token_words += tmp_token_words
             self.attr_features[img_id] = token_words
-
+    print("7") 
     # Tokenize statistical words
     def stat_word_tokenize_1(self, max_length=40):
         for img_id in self.stat_words:
@@ -304,7 +305,7 @@ class GQAFeatureDataset(Dataset):
                 tokens = tokens + padding
             utils.assert_eq(len(tokens), max_length)
             self.stat_features[img_id] = tokens
-
+    print("8")
     def ans_word_tokenize(self, max_length=2):
         ans_list = []
         for ans in self.label2ans:
@@ -317,7 +318,7 @@ class GQAFeatureDataset(Dataset):
             utils.assert_eq(len(tokens), max_length)
             ans_list.append(tokens)
         self.ans_list = ans_list
-
+    print("9")
     def tensorize(self):
         self.features = torch.from_numpy(self.features)
         self.spatials = torch.from_numpy(self.spatials)
@@ -341,7 +342,7 @@ class GQAFeatureDataset(Dataset):
                 else:
                     entry['answer']['labels'] = None
                     entry['answer']['scores'] = None
-
+    print("10")
     def __getitem__(self, index):
         entry = self.entries[index]
         features = self.features[self.pos_boxes[entry['image']][0]:self.pos_boxes[entry['image']][1], :]
@@ -368,6 +369,6 @@ class GQAFeatureDataset(Dataset):
             return features, spatials, stat_features, entity, attr_features, question, sent, target, ans
         else:
             return features, spatials, stat_features, entity, attr_features, question, sent, question_id, img_id, ans
-
+    print("11")
     def __len__(self):
         return len(self.entries)
