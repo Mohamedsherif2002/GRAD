@@ -164,7 +164,7 @@ class GQAFeatureDataset(Dataset):
         print('Create %s entries' % name)
 
         # load stat_word
-        self.stat_words = json.load(open('d/kaggle/input/lxmert-gqa/gqa/%s_%s_stats_words.json' % (name, args.topk)))
+        self.stat_words = json.load(open('/kaggle/input/lxmert-gqa/gqa/%s_%s_stats_words.json' % (name, args.topk)))
         self.stat_skip_imgid = json.load(open('/kaggle/input/lxmert-gqa/gqa/%s_%s_stats_skip_imgid.json' % (name, args.topk)))
         self.stat_features = {}
 
