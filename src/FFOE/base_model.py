@@ -192,14 +192,14 @@ def build_CFRF_Model(dataset, args):
 
     if hasattr(args, 'tfidf'):
         if args.dataset == 'GQA':
-            w_emb = tfidf_loading(args.tfidf, w_emb, args, 'data/gqa')
-            sw_emb = tfidf_loading(args.tfidf, sw_emb, args, 'data/gqa')
-            ew_emb = tfidf_loading(args.tfidf, ew_emb, args, 'data/gqa')
+            w_emb = tfidf_loading(args.tfidf, w_emb, args, '/kaggle/input/lxmert-gqagqa')
+            sw_emb = tfidf_loading(args.tfidf, sw_emb, args, '/kaggle/input/lxmert-gqagqa')
+            ew_emb = tfidf_loading(args.tfidf, ew_emb, args, '/kaggle/input/lxmert-gqagqa')
 
         elif args.dataset == 'VQA':
-            w_emb = tfidf_loading(args.tfidf, w_emb, args, 'data/vqa')
-            sw_emb = tfidf_loading(args.tfidf, sw_emb, args, 'data/vqa')
-            ew_emb = tfidf_loading(args.tfidf, ew_emb, args, 'data/vqa')
+            w_emb = tfidf_loading(args.tfidf, w_emb, args, '/kaggle/input/lxmert-gqavqa')
+            sw_emb = tfidf_loading(args.tfidf, sw_emb, args, '/kaggle/input/lxmert-gqavqa')
+            ew_emb = tfidf_loading(args.tfidf, ew_emb, args, '/kaggle/input/lxmert-gqavqa')
 
     qe_joint = build_ban_fusion(dataset, args, args.num_hid, 600, gamma=1, omega=args.omega_q)
     vs_joint = build_ban_fusion(dataset, args, args.num_hid, dataset.v_dim, gamma=1, omega=args.omega_v)
