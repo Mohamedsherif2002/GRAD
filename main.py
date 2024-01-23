@@ -169,10 +169,8 @@ if __name__ == '__main__':
         dictionary = Dictionary.load_from_file('/kaggle/input/lxmert-gqa/gqa/dictionary.pkl')
         print("Here2")
         train_dset = GQAFeatureDataset(args, 'train', dictionary, adaptive=True)
-        train_dset.set_cache_paths('/kaggle/input/lxmert-gqa/data/gqa/cache/trainval_ans2label.pkl')
         print("Here3")
         val_dset = GQAFeatureDataset(args, 'val', dictionary, adaptive=True)
-        val_dset.set_cache_paths('/kaggle/input/lxmert-gqa/data/gqa/cache/trainval_ans2label.pkl')
         print("Here4")
     else:
         raise BaseException("Dataset name not found!")
