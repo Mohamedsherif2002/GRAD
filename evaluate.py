@@ -130,8 +130,8 @@ if __name__ == '__main__':
     torch.cuda.set_device(args.gpu)
 
     if args.dataset == 'GQA':
-        dictionary = Dictionary.load_from_file('/kaggle/input/lxmert-gqagqa/dictionary.pkl')
-        eval_dset = GQAFeatureDataset(args, args.split, dictionary, dataroot='/kaggle/input/lxmert-gqagqa', adaptive=True)
+        dictionary = Dictionary.load_from_file('../gqa/dictionary.pkl')
+        eval_dset = GQAFeatureDataset(args, args.split, dictionary, dataroot='../gqa', adaptive=True)
     else:
         raise BaseException("Dataset name not found!")
 

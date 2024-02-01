@@ -16,10 +16,10 @@ TINY_IMG_NUM = 500
 FAST_IMG_NUM = 5000
 
 Split2ImgFeatPath = {
-    'mscoco_train': '/kaggle/input/lxmert-gqamscoco_imgfeat/train2014_obj36.tsv',
-    'mscoco_minival': '/kaggle/input/lxmert-gqamscoco_imgfeat/val2014_obj36.tsv',
-    'mscoco_nominival': '/kaggle/input/lxmert-gqamscoco_imgfeat/val2014_obj36.tsv',
-    'vgnococo': '/kaggle/input/lxmert-gqavg_gqa_imgfeat/vg_gqa_obj36.tsv',
+    'mscoco_train': '../mscoco_imgfeat/train2014_obj36.tsv',
+    'mscoco_minival': '../mscoco_imgfeat/val2014_obj36.tsv',
+    'mscoco_nominival': '../mscoco_imgfeat/val2014_obj36.tsv',
+    'vgnococo': '../vg_gqa_imgfeat/vg_gqa_obj36.tsv',
 }
 
 
@@ -51,7 +51,7 @@ class LXMERTDataset:
         # Loading datasets to data
         self.data = []
         for source in self.sources:
-            self.data.extend(json.load(open("/kaggle/input/lxmert-gqalxmert/%s.json" % source)))
+            self.data.extend(json.load(open("../lxmert/%s.json" % source)))
         print("Load %d data from %s" % (len(self.data), self.name))
 
         # Create answer table according to the qa_sets

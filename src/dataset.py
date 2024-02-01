@@ -149,7 +149,7 @@ def tfidf_from_questions(names, dictionary, dataroot='data', target=['gqa']):
 
     if 'cap' in target: # MSCOCO Caption
         for split in ['train2017', 'val2017']:
-            captions = json.load(open('/kaggle/input/lxmert-gqaannotations/captions_%s.json' % split, 'r'))
+            captions = json.load(open('../annotations/captions_%s.json' % split, 'r'))
             for caps in captions['annotations']:
                 populate(inds, df, caps['caption'])
 
@@ -175,7 +175,7 @@ def tfidf_from_questions(names, dictionary, dataroot='data', target=['gqa']):
 
     # Latent word embeddings
     emb_dim = 300
-    glove_file = '/kaggle/input/lxmert-gqagqa/glove/glove.6B.%dd.txt' % emb_dim
+    glove_file = '../gqa/glove/glove.6B.%dd.txt' % emb_dim
     weights, word2emb = create_glove_embedding_init(dictionary.idx2word[N:], glove_file)
     print('tf-idf stochastic matrix (%d x %d) is generated.' % (tfidf.size(0), tfidf.size(1)))
 
